@@ -15,6 +15,7 @@ const daysOfWeek = ['M', 'T', 'W', 'T', 'F', 'S', 'S']
 const DaysContainer = styled.div`
     display: flex;
     justify-content: space-around;
+    
 ` 
 
 const DayOfWeek = styled.div`
@@ -24,7 +25,7 @@ const DayOfWeek = styled.div`
 const DayOfMonth = styled.div`
     font-size: 16px;
     background: ${props => props.selected ? accentColor : 'inherit'};
-    color: ${props => props.selected ? 'white' : 'inherit'};
+    color: ${props => props.selected ? 'white' : props.faded ? '#aaa' : 'inherit'};
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -41,13 +42,16 @@ const DayItemWrapper = styled.div`
     gap: 6px;
 `
 
-const DayItem = ({dayOfWeek, dayOfMonth}) => {
+const DayItem = ({dayOfWeek, dayOfMonth, faded}) => {
     return (
         <DayItemWrapper>
             <DayOfWeek>
                 {dayOfWeek}
             </DayOfWeek>
-            <DayOfMonth selected={compareDates(dayOfMonth, new Date())}>
+            <DayOfMonth 
+                selected={compareDates(dayOfMonth, new Date())}
+                faded={faded}
+            >
                 <div>{dayOfMonth.getDate()}</div>
             </DayOfMonth>
         </DayItemWrapper>
@@ -75,13 +79,15 @@ const Navigation = ({monday, setMonday}) => {
         <NavigationWrapper>
             <DaysContainer>
                 {
-                    daysOfWeek.map((d, i) => 
-                        <DayItem 
+                    daysOfWeek.map((d, i) => {
+                        const calculatedDate = addDays(monday, i)
+                        return <DayItem 
                             key={i}
                             dayOfWeek={d}
-                            dayOfMonth={addDays(monday, i)}
+                            dayOfMonth={calculatedDate}
+                            faded={calculatedDate.getDate() < monday.getDate()}
                         />
-                    )
+                    })
                 }
             </DaysContainer>
             <MonthNav>
@@ -96,7 +102,9 @@ const Navigation = ({monday, setMonday}) => {
                 >
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
                 </NavButton>
-                {getMonthName(monday.getMonth())} {monday.getFullYear()}
+                <span>
+                    {getMonthName(monday.getMonth())} {monday.getFullYear()}
+                </span>
                 <NavButton 
                 xmlns="http://www.w3.org/2000/svg" 
                 className="h-6 w-6" 
