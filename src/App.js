@@ -21,7 +21,7 @@ const AppWrapper = styled.div`
 `
 
 function App() {
-  //отправной точкой календаря счтается понедельник
+  //отправной точкой календаря считается понедельник
   const [monday, setMonday] = useState(findMonday(new Date()))
   //события хранятся в виде массива дат
   const [events, setEvents] = useState([])

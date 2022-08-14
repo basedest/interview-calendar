@@ -12,6 +12,6 @@ export default function getMonthName(monthNumber) {
     "October",
     "November",
     "December"
-  ];
-  return months[monthNumber];
+  ]
+  return months[monthNumber]
 }

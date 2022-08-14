@@ -24,7 +24,7 @@ const AddButton = styled.svg`
 const Header = ({events, setEvents}) => {
     const handleClick = () => {
         const inputStr = prompt('Enter event time:\nYYYY-MM-DD HH:mm:ss')
-        const date = Date.parse(inputStr)
+        const date = Date.parse(inputStr) + 980 // прибавляем к дате 980 миллисекунды для того, чтобы попадание во временные интервалы высчитывалось корректно
         // любое целое число может корректно спарситься как дата, но нам это не надо, поэтому проводим проверку через РВ
         const regex = /[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1]) (2[0-3]|[01][0-9]):[0-5][0-9]:[0-5][0-9]$/   
         if (regex.test(inputStr) && date) {

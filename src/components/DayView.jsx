@@ -67,6 +67,9 @@ const DayView = ({monday, events, setEvent}) => {
       cellArray.push(addHours(addDays(monday, j), i))
     }
   }
+
+  const checkInterval = (e, tStart, tEnd) => e >= tStart && e < tEnd
+
   return (
     <DayViewWrapper>
       <TimeRow>
@@ -84,11 +87,11 @@ const DayView = ({monday, events, setEvent}) => {
           cellArray.map((t, i) => 
             <GridCell 
               time={t}
-              event={events.find(e => e >= t && e < addHours(t, 1))}
+              event={events.find(e => checkInterval(e, t, addHours(t, 1)))}
               key={i} 
               onClick={ () => {
                 setSelectedCell(i)
-                setEvent(events.findIndex(e => e >= t && e < addHours(t, 1)))
+                setEvent(events.findIndex(e => checkInterval(e, t, addHours(t, 1))))
               }}
               selected={selectedCell === i}
             />
