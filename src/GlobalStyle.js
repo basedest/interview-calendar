@@ -8,10 +8,15 @@ export const timeColor   = '#c0c0c0'
 export const bgColor     = '#f6f6f6'
 
 const GlobalStyle = createGlobalStyle`
-  body {
+  *, *::before, *::after {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+  }
+  #root {
+  isolation: isolate;
+  }
+  body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;

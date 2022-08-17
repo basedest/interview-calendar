@@ -1,7 +1,11 @@
 {
   "name": "interview-calendar",
-  "version": "0.1.0",
-  "private": true,
+  "description": "React SPA with weekly calendar",
+  "version": "1.0.0",
+  "homepage": "https://github.com/basedest/interview-calendar",
+  "author": "Ivan Scherbakov (https://github.com/basedest)",
+  "repository": "basedest/interview-calendar",
+  "license": "MIT",
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
